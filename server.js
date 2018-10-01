@@ -21,8 +21,14 @@ app.use('/',routes);  //this references the actual route
 
 
 
-var PORT = process.env.PORT || 8080;
+// var PORT = process.env.PORT || 8080;
 
-app.listen(PORT, function() {
-  console.log("Server listening on: http://localhost:" + PORT);
-});
+// app.listen(PORT, function() {
+//   console.log("Server listening on: http://localhost:" + PORT);
+// });
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port);
