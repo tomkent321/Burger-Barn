@@ -1,0 +1,105 @@
+
+<div class="container">
+
+    <div class="jumbotron">
+       
+            <div class="row">
+                <div class="col-lg-7">
+                    <h1 class="display-4">Build Better Burger Barns!</h1>
+                    <p class="lead">Make millions designing your own <span id="logo-1">Burger Barn</span> &trade; Restaurant.  </p>
+                    <hr class="my-4">
+                    <p><span id="logo-2">Burger Barn</span> &trade; restaurants is the fastest growing chain in Nigeria. Many Nigerian email spammers have switched to <span id="logo-2">Burger Barn</span> &trade; as a better way to make a living.  Our restaurants are successful because we listen to our customers. Your success as a proud <span id="logo-2">Burger Barn</span> &trade; owner starts by getting your future customer's ideas on the kinds of burgers they would eat (and buy). Before you open, find at least 15 people who will suggest a burger and then sample it after you cook it. Add your customer favorites to the menu!  </p>
+            </div>
+            <div class="col-lg-5">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="./assets/img/Picture3.png" class="img-fluid" alt="Responsive image">
+                    </div>
+                </div>
+                
+            </div>
+  </div>
+  
+</div>
+{{!-- Input form --}}
+<div class="card">
+  <div class="card-header">
+    Customer Survey Input
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Get Customer Suggested Burgers</h5>
+    
+    <p class="card-text">Enter the name of the burger and a suggested price.</p>
+    <form action="/burgers/create" method="POST">
+                <input type="text" name="burger_name" class="form-control" value="" id="enter_text" placeholder=>
+                <br>
+                <button type="submit" class="btn btn-outline-danger" id="text-enter-button">Put it on the list!</button>
+            </form>
+  </div>
+</div>
+
+
+
+{{!-- suggested list --}}
+
+
+{{!-- <div class="container"> --}}
+<div class="card">
+    <div class="card-body">
+        <div class="card-header list-head">
+       Suggested burgers List 
+            </div>
+            <h5 class="card-title">Cook these and put the ones they like on the menu!</h5>
+                {{#each burger_data}}
+                    {{#unless this.devoured}}
+
+         <div class="card" style="height: 50px;">
+             <div class="card-body">         
+            <div class="row">
+
+
+            {{!-- <form method="POST" action="/burgers/update?_method=PUT" class="button-size form-inline"> --}}
+                  <div class="col-lg-9">
+                      <h6>{{this.id}}. {{this.burger_name}}</h6>
+                  </div>  
+
+                <div class="col-lg-3 ">
+                <form method="POST" action="/burgers/update?_method=PUT" class="button-size form-inline">
+                        <input type="hidden" class="menu-item" name="burger_id" type="text" value=
+                        {{this.id}}>
+                        <br>
+                        <button type="submit" class="btn btn-outline-danger add-burger">Put it on the menu!</button>
+                   </form>
+                 
+            </div>
+            </div>
+           </div>
+            </div>  
+                {{/unless}}
+                {{/each}}
+            
+            </div>
+
+</div>
+
+
+
+<div class="card menu-card">
+    <div class="card-body">
+         <h1 class="card-title menu-title"><span id="logo-3">Burger Barn</span> &trade; Menu</h1>
+         
+         <p class="intro-text">All burgers made with the freshest ingredients where possible. </p>
+
+    <div class="col-xs-6 text-center" class="task">
+        {{#each burger_data}}
+            {{#if this.devoured}}
+               {{!-- <input class="form-control" type="text" placeholder="{{this.id}}. {{this.burger_name}}" readonly> --}}
+               <p class="menu-text"> {{this.burger_name}}       </p>      
+            {{/if}}
+        {{/each}}
+    </div>
+    <p class="intro-text">Nigerian Dining at it's finest. In business for 3 weeks! Leave your email, legal name and credit card number with Ms. Mary Smith (President of the Nigerian Bank) for information on starting your own Burger Barn franchise. </p>
+    </div>
+</div>
+
+
